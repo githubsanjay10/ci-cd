@@ -45,18 +45,18 @@ pipeline {
         }
         stage('docker build') {
             steps {
-                sh 'docker build -t spring-boot1234 .'
+                sh 'docker build -t spring-boot143 .'
             }
         }
         stage('docker push') {
             steps {
-                sh 'docker tag spring-boot1234 sanjay145/spring-boot1234'
-                sh 'docker push sanjay145/spring-boot1234'
+                sh 'docker tag spring-boot143 sanjay145/spring-boot143'
+                sh 'docker push sanjay145/spring-boot143'
             }
         }
-        stage('docker container') {
+        stage('docker compose') {
             steps {
-                sh 'docker run -itd -p 8012:8012 spring-boot1234 '
+                sh 'docker-compose up -d'
             }
         }
     }
@@ -66,7 +66,7 @@ pipeline {
             echo 'slack Notification.'
             slackSend channel: '#cicd',
             color: COLOR_MAP[currentBuild.currentResult],
-            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
-        }
-    }
+            message: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+        }
+    }
 }
