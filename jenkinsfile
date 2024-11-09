@@ -34,15 +34,24 @@ pipeline {
                 sh 'mvn install'
             }
         }
+        stage('docker login') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
+                    }
+                }
+            }
+        }
         stage('docker build') {
             steps {
-                sh 'docker build -t spring-boot1 .'
+                sh 'docker build -t spring-boot12 .'
             }
         }
         stage('docker push') {
             steps {
-                sh 'docker tag spring-boot1 sanjay145/spring-boot1'
-                sh 'docker push sanjay145/spring-boot1'
+                sh 'docker tag spring-boot12 sanjay145/spring-boot12'
+                sh 'docker push sanjay145/spring-boot12'
             }
         }
         stage('docker compose') {
