@@ -41,8 +41,8 @@ pipeline {
         }
         stage('docker push') {
             steps {
-                sh 'docker tag spring-boot sanjay145/spring-boot'
-                sh 'docker push sanjay145/spring-boot'
+                sh 'sudo docker tag spring-boot sanjay145/spring-boot'
+                sh 'sudo docker push sanjay145/spring-boot'
             }
         }
         stage('docker compose') {
