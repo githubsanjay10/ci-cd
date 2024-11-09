@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   java-spring:
-    image: sushmagowda321/spring-boot 
+    image: sanjay145/spring-boot 
     ports:
-      - 8082:8082
+      - 8082:8012
     
