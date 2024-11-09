@@ -45,18 +45,18 @@ pipeline {
         }
         stage('docker build') {
             steps {
-                sh 'docker build -t spring-boot123 .'
+                sh 'docker build -t spring-boot1234 .'
             }
         }
         stage('docker push') {
             steps {
-                sh 'docker tag spring-boot123 sanjay145/spring-boot123'
-                sh 'docker push sanjay145/spring-boot123'
+                sh 'docker tag spring-boot1234 sanjay145/spring-boot1234'
+                sh 'docker push sanjay145/spring-boot1234'
             }
         }
         stage('docker container') {
             steps {
-                sh 'docker run -itd -p 8012:8082 spring-boot12 '
+                sh 'docker run -itd -p 8082:8082 spring-boot1234 '
             }
         }
     }
