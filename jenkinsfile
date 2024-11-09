@@ -36,13 +36,13 @@ pipeline {
         }
         stage('docker build') {
             steps {
-                sh 'docker build -t spring-boot .'
+                sh 'docker build -t spring-boot1 .'
             }
         }
         stage('docker push') {
             steps {
-                sh 'sudo docker tag spring-boot sanjay145/spring-boot11'
-                sh 'sudo docker push sanjay145/spring-boot11'
+                sh 'docker tag spring-boot1 sanjay145/spring-boot1'
+                sh 'docker push sanjay145/spring-boot1'
             }
         }
         stage('docker compose') {
